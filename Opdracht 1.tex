@@ -1,0 +1,41 @@
+%Preamble
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage[dutch]{babel}
+
+\title{Opdracht 1}
+
+\newtheorem{stelling}{stelling}
+
+%Body
+\begin{document}
+\maketitle
+De Chebyshev veeltermen van de eerst soort $T_{k}(x)$ worden gedefinieerd op basis van de volgende recursiebetrekking:
+\begin{center}
+$T_{0}(x)=1$\\
+$T_{1}(x)=x$\\
+$T_{k+1}(x)=2xT_{k}(x)-T_{k-1}(x)$
+\end{center}
+
+\begin{stelling}
+Op het interval $[-1,1]$ voldoen de Chebyshev veeltermen aan volgende vergelijking:
+\begin{equation}
+T_{k}(x)=\cos(k\arccos(x)) \label{formule1}
+\end{equation}
+\end{stelling}
+
+\begin{proof}
+We zullen dit aantonen met behulp van volledige inductie:\\
+\begin{bfseries} basisstap:\end{bfseries}\\
+voor $k=0$ geldt: $T_{0}=\cos(0*\arccos(x))=\cos(0)=1$\\
+voor $k=1$ geldt: $T_{1}=\cos(\arccos(x))=x$ op het interval $[-1,1]$ want de $\arccos$-functie is enkel gedefinieerd op het interval $[-1,1]$.\\
+\begin{bfseries} inductiestap:\end{bfseries}\\
+We nemen aan dat voor alle $j\leq n$ geldt: $T_{n}(x)=\cos(n\arccos(x))$. Nu moet aangetoond worden dat dit ook geldt voor $n+1$. Volgens de recursiebetrekking voor de Chebyshev veeltermen geldt: $T_{n+1}(x)=2xT_{n}(x)-T_{n-1}(x)$. Nu kunnen we de inductiehypothese toepassen, dit geeft: $T_{n+1}(x)=2x\cos(n\arccos(x))-\cos((n-1)\arccos(x))$. Met behulp van de som-en verschilformules voor de cosinus kunnen we dit schrijven als: $T_{n+1}=2x\cos(n\arccos(x))-\cos(n\arccos(x))\cos(\arccos(x))-\sin(n\arccos(x))\sin(\arccos(x))\\
+=\cos(n\arccos(x)\cos(\arccos(x))-\sin(n\arccos(x))\sin(\arccos(x))$
+Hierop kunnen we dan opnieuw de som-en verschil formules voor de cosinus op toepassen en dit geeft:
+$T_{n+1}(x)=\cos((n+1)\arccos(x))$. De veronderstelling geldt dus ook voor n+1.\\
+\begin{bfseries} conclusie:\end{bfseries}\\
+Uit de basisstap, de inductiestap en het principe van volledige inductie volgt het te bewijzen
+\end{proof}
+
+\end{document}
