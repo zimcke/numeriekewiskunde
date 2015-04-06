@@ -33,6 +33,12 @@
 \usepackage{listings} % Required for insertion of code
 \usepackage{courier} % Required for the courier font
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage[dutch]{babel}
+\usepackage{amsmath,amssymb}
+
+\newtheorem{stelling}{Stelling}
+\newenvironment{proof}{\paragraph{Bewijs: }}{\hfill$\square$}
+
 
 % Margins
 \topmargin=-0.45in
@@ -115,31 +121,31 @@
 \nobreak\extramarks{#1}{}\nobreak
 }
 
-\setcounter{secnumdepth}{0} % Removes default section numbers
-\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+%\setcounter{secnumdepth}{0} % Removes default section numbers
+%\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
 
-\newcommand{\homeworkProblemName}{}
-\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
-\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
-\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
-\section{\homeworkProblemName} % Make a section in the document with the custom problem count
-\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
-}{
-\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
-}
+%\newcommand{\homeworkProblemName}{}
+%\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+%\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+%\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+%\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+%\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+%}{
+%\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+%}
 
 \newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
 \noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
 }
 
-\newcommand{\homeworkSectionName}{}
-\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
-\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
-\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
-\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
-}{
-\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
-}
+%\newcommand{\homeworkSectionName}{}
+%\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+%\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+%\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+%\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+%}{
+%\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+%}
 
 %----------------------------------------------------------------------------------------
 %	NAME AND CLASS SECTION
@@ -190,20 +196,57 @@
 
 % To have just one problem per page, simply put a \clearpage after each problem
 
-\begin{homeworkProblem}
-Listing \ref{homework_example} shows a Perl script.
+%\begin{homeworkProblem}
+\section{Achtergrond}
 
-\perlscript{homework_example}{Sample Perl Script With Highlighting}
+De Chebyshev veeltermen van de eerst soort $T_{k}(x)$ worden gedefinieerd op basis van de volgende recursiebetrekking:
+\begin{center}
+$T_{0}(x)=1$\\
+$T_{1}(x)=x$\\
+$T_{k+1}(x)=2xT_{k}(x)-T_{k-1}(x)$
+\end{center}
 
-\lipsum[1]
-\end{homeworkProblem}
+\begin{stelling}
+Op het interval $[-1,1]$ voldoen de Chebyshev veeltermen aan volgende vergelijking:
+\begin{equation}
+T_{k}(x)=\cos(k\arccos(x)) \label{formule1}
+\end{equation}
+\end{stelling}
+
+\problemAnswer{
+\begin{proof}
+We zullen deze stelling aantonen met behulp van volledige inductie.\\
+
+\begin{bfseries} Basisstap:\end{bfseries}\\
+voor $k=0$ geldt: $T_{0}=\cos(0*\arccos(x))=\cos(0)=1$\\
+voor $k=1$ geldt: $T_{1}=\cos(\arccos(x))=x$ op het interval $[-1,1]$ want de $\arccos$-functie is enkel 	gedefinieerd op het interval $[-1,1]$.\\ \\
+\vspace{0.1in}
+\begin{bfseries} Inductiestap:\end{bfseries}\\
+We nemen aan dat voor alle $j\leq n$ geldt: $T_{n}(x)=\cos(n\arccos(x))$. Nu moet aangetoond worden dat dit ook 	geldt voor $n+1$. Volgens de recursiebetrekking voor de Chebyshev veeltermen geldt: $T_{n+1}(x)=2xT_{n}(x)-T_{n-1}(x)$. Nu kunnen we de inductiehypothese toepassen, dit geeft: $T_{n+1}(x)=2x\cos(n\arccos(x))-\cos((n-1)\arccos(x))$. Met behulp van de som-en verschilformules voor de cosinus kunnen we dit schrijven als: $T_{n+1}=2x\cos(n\arccos(x))-\cos(n\arccos(x))\cos(\arccos(x))-\sin(n\arccos(x))\sin(\arccos(x))\\
+=\cos(n\arccos(x)\cos(\arccos(x))-\sin(n\arccos(x))\sin(\arccos(x))$
+Hierop kunnen we dan opnieuw de som-en verschil formules voor de cosinus op toepassen en dit geeft:
+$T_{n+1}(x)=\cos((n+1)\arccos(x))$. De veronderstelling geldt dus ook voor n+1.\\ \\
+\vspace{0.1in}
+\begin{bfseries} Conclusie:\end{bfseries}\\
+Uit de basisstap, de inductiestap en het principe van volledige inductie volgt het te bewijzen.
+\end{proof}
+}
+
+
+
+%Listing \ref{homework_example} shows a Perl script.
+
+%\perlscript{homework_example}{Sample Perl Script With Highlighting}
+
+
+%\end{homeworkProblem}
 
 %----------------------------------------------------------------------------------------
 %	PROBLEM 2
 %----------------------------------------------------------------------------------------
 
-\begin{homeworkProblem}
-\lipsum[2]
+%\begin{homeworkProblem}
+
 
 \problemAnswer{
 \begin{center}
@@ -212,7 +255,7 @@ Listing \ref{homework_example} shows a Perl script.
 
 \lipsum[3-5]
 }
-\end{homeworkProblem}
+%\end{homeworkProblem}
 
 %----------------------------------------------------------------------------------------
 
