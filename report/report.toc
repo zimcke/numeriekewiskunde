@@ -1,3 +1,6 @@
 \select@language {dutch}
 \contentsline {section}{\numberline {1}Achtergrond}{3}
 \contentsline {paragraph}{Bewijs: }{3}
+\contentsline {section}{\numberline {2}Deel 1: Drie veeltermbasissen}{4}
+\contentsline {section}{\numberline {3}Deel 2: Veelterminterpolatie}{5}
+\contentsline {section}{\numberline {4}Deel 3: Methode van Newton-Raphson}{6}
