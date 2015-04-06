@@ -1,6 +1,6 @@
 function [ y,dy ] = chebpolyval( c,x )
 
-% corresponding chebychev polynomials
+%
 [T,dT]=chebyshev(x,length(c)-1);
 
 % init
