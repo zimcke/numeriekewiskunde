@@ -7,7 +7,7 @@ y = 0;
 for i = 1:length(x)
     t = f(i);
     
-    for j = 1:lenght(x)
+    for j = 1:length(x)
         
         if i ~= j
            t = t .* (z - x(j))/(x(i)-x(j));
