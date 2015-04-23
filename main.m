@@ -24,7 +24,3 @@ xlabel('x-waarden in [-1,1]') % x-axis label
 ylabel('Chebyshev veelterm evaluaties') % y-axis label
 
 [y, dy] = chebpolyval(c,x)
-
-%% Deel 2: Veelterminterpolatie
-
-%% Deel 3: Methode van Newton-Raphson

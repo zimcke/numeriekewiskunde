@@ -4,18 +4,13 @@ function [ y ] = evalueer_lagrange( x, f, z )
 y = 0;
 
 % iterate through all points
-for i = 1:length(x)
+for i = 1:10
     t = f(i);
-    
-    for j = 1:length(x)
-        
+    for j = 1:10
         if i ~= j
            t = t .* (z - x(j))/(x(i)-x(j));
         end
     end
-    
     y = y + t;
-end    
-
-end
+end  
 
