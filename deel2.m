@@ -5,17 +5,25 @@ f = @fx;
 
 nbpoints = 10000;
 z = linspace(-1,1,nbpoints);
-
 y = fx(z);
+
+% Lagrange interpolation degree 8
 x = linspace(-1,1,9);
 polynom8 = evalueer_lagrange(x, f, z);
+
+% Lagrange interpolation degree 10
 x = linspace(-1,1,11);
 polynom10 = evalueer_lagrange(x, f, z);
+
+% Lagrange interpolation degree 12
 x = linspace(-1,1,13);
 polynom12 = evalueer_lagrange(x, f, z);
+
+% Lagrange interpolation degree 14
 x = linspace(-1,1,15);
 polynom14 = evalueer_lagrange(x, f, z);
 
+% Figure 1: Lagrange interpolation
 figure(1),clf
 plot(z,y)
 hold on
@@ -25,32 +33,31 @@ plot(z, polynom12)
 plot(z, polynom14)
 legend('f(x)','L8', 'L10', 'L12', 'L14')
 xlabel('x-values in [-1,1]') % x-axis label
-ylabel('Polynomial interpolation') % y-axis label
+ylabel('Lagrange interpolation') % y-axis label
 print('report\3_1_1','-dpng')
 
-% equidistantial nodes degree 20
+% Lagrange interpolation degree 20, equidistantial nodes 
 x = linspace(-1,1,21);
 polynom20 = evalueer_lagrange(x, f, z);
 abs_error20 = abs(polynom20 - y);
 rel_error20 = abs_error20 ./ y;
 
-% equidistantial nodes degree 50
+% Lagrange interpolation degree 50, equidistantial nodes 
 x = linspace(-1,1,51);
 polynom50 = evalueer_lagrange(x, f, z);
 abs_error50 = abs(polynom50 - y);
 rel_error50 = abs_error50 ./ y;
 
-% chebychev nodes degree 20
+% Lagrange interpolation degree 20, chebychev nodes 
 xc = 0;
 for i = 1:21
    xc(i) = cos(((2*i - 1)*pi)/ (2*21));
 end
-xc
 polynom20c = evalueer_lagrange(xc, f, z);
 abs_error20c = abs(polynom20c - y);
 rel_error20c = abs_error20c ./ y;
 
-% chebychev nodes degree 50
+% Lagrange interpolation degree 50, chebychev nodes 
 for i = 1:51
    xc(i) = cos(((2*i - 1)*pi)/ (2*51));
 end
@@ -58,7 +65,8 @@ polynom50c = evalueer_lagrange(xc, f, z);
 abs_error50c = abs(polynom50c - y);
 rel_error50c = abs_error50c ./ y;
 
-% plot error
+% Figure 2: relative error with Lagrange interpolation (equidistant and
+% chebychev nodes)
 figure(2),clf
 semilogy(z, rel_error20)
 hold on
@@ -70,21 +78,73 @@ xlabel('x-values in [-1,1]') % x-axis label
 ylabel('Relative error') % y-axis label
 print('report\3_1_2','-dpng')
 
-%% Verschillende basissen
+benaderingsfout_equidistant = zeros(1,50);
+for i = 1:50
+    x = linspace(-1,1,i+1);
+    z = linspace(-1,1,10000);
+    benaderingsfout_equidistant(i) = max(norm(fx(z) - evalueer_lagrange(x,f,z)));
+end
+
+benaderingsfout_chebychev = zeros(1,50);
+for i = 1:50
+    for j = 1:(i+1)
+        xc(j) = cos(((2*j - 1)*pi)/ (2*(i+1)));
+    end
+    benaderingsfout_chebychev(i) = max(norm(fx(z) - evalueer_lagrange(xc,f,z)));
+end
+
+figure(3),clf
+semilogy(1:50, benaderingsfout_equidistant);
+hold on
+semilogy(1:50, benaderingsfout_chebychev);
+legend('Benaderingsfout equidistant nodes', 'Benaderingsfout chebychev nodes')
+xlabel('x-values in [-1,1]') % x-axis label
+ylabel('Benaderingsfout') % y-axis label
+print('report\3_1_3','-dpng')
+
+
+%% 3.2 Verschillende basissen
 
 clc
 
 f = @fx;
 nbpoints = 10000;
 z = linspace(-1,1,nbpoints);
-y = fx(z);
 
-xc = 0;
-for i = 1:81
-   xc(i) = cos(((2*i - 1)*pi)/ (2*51));
+chebnodes = zeros(1,80);
+for i = 1:80
+    chebnodes(i) = cos(((2*i - 1)*pi)/ (2*(80)));
 end
 
-lagrange80 = evalueer_lagrange(xc, f, z);
-monomial80 = polyval(xc, z);
-chebpolyval(xc, z);
+chebnodes = chebnodes';
+y = fx(chebnodes);
+[T,dT] = chebychev(chebnodes,80);
+T = T';
+benaderingsfout_chebychev = zeros(80);
+for i = 1:80
+    benaderingsfout_chebychev(i) = max(norm(y - T(i+1)));
+end
+
+figure(5), clf
+semilogy(1:80, benaderingsfout_chebychev);
+hold on
+
+% lagrange80 = evalueer_lagrange(xc, f, z);
+% p = [25 0 1];
+% monomial80 = 1./polyval(p, xc);
+% c = [27/2 0 25/2];
+% cheb80 = 1./chebpolyval(c, xc);
+
+
+% figure(4),clf
+% plot(z,y);
+% hold on
+% plot(z, lagrange80);
+% plot(xc, monomial80);
+% plot(xc, cheb80);
+% legend('f(x)','L80', 'M80', 'Chebychev 80');
+% xlabel('x-values in [-1,1]') % x-axis label
+% ylabel('Polynomial interpolation') % y-axis label
+
+
 
