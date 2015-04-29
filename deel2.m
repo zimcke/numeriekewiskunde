@@ -143,7 +143,7 @@ for i = 1:80
     coeff_monomial = M\b;
     
     % calculate Chebyshev coefficients
-    [T, dT] = chebyshev(chebnodes, i);
+    [T, ~] = chebyshev(chebnodes, i);
     coeff_chebyshev = T\b;
     
     % interpolation error
@@ -185,7 +185,7 @@ gemiddelde_chebyshev = 0;
 tic
 for j = 1:10
     b = f(chebyshev_nodes50)';
-    [T, dT] = chebyshev(chebyshev_nodes50, i);
+    [T, ~] = chebyshev(chebyshev_nodes50, i);
     coeff_chebyshev = T\b;
     chebpolyval(coeff_chebyshev, z);
 end
@@ -208,7 +208,7 @@ chebyshev_nodes100 = chebyshev_nodes(i+1);
 tic
 for j = 1:10
     b = f(chebyshev_nodes100)';
-    [T, dT] = chebyshev(chebyshev_nodes100, i);
+    [T, ~] = chebyshev(chebyshev_nodes100, i);
     coeff_chebyshev = T\b;
     chebpolyval(coeff_chebyshev, z);
 end
