@@ -3,26 +3,26 @@
 %variabelen toekennen
 format long
 load('cheb_coeffs.mat')
-nbpoints=10000;
-tol=10^-20;
-nmax=50;
-h=[10^-1 10^-1.5 10^-2 10^-3 10^-6];
-x_start=linspace(-1,1,100);
-x=linspace(-1,1,nbpoints);
-[y,dy]=chebpolyval(c,x);
+nbpoints = 10000;
+tol = 10^-20;
+nmax = 50;
+h = [10^-1 10^-1.5 10^-2 10^-3 10^-6];
+x_start = linspace(-1,1,100);
+x = linspace(-1,1,nbpoints);
+[y,dy] = chebpolyval(c,x);
 
 %nulpunten benaderen
 clearvars nulp
-N_R=newton_cheb(c,x_start(1),tol,nmax,'exact',h);
-nulp=N_R(end);
-for k=2:100
-    N_R=newton_cheb(c,x_start(k),tol,nmax,'exact',h);
+N_R = newton_cheb(c,x_start(1),tol,nmax,'exact',h);
+nulp = N_R(end);
+for k = 2:100
+    N_R = newton_cheb(c,x_start(k),tol,nmax,'exact',h);
     nulp(end+1)=N_R(end);
     
 end
 
 %nulpunten plotten op de veelterm
-y1=zeros(length(nulp));
+y1 = zeros(length(nulp));
 figure(1)
 plot(x,y,nulp,y1,'o')
 title('Chebyshevveelterm met nulpunten')
@@ -38,9 +38,9 @@ xlabel('startwaarden') % x-axis label
 ylabel('nulpunten met Newton-Raphson benadering') % y-axis label
 
 %plot: raaklijn aan het punt waar de veelterm zijn absolute maximum bereikt
-x_max=x(find(y==max(y)));
-[y_max,dy_max]=chebpolyval(c,x_max);
-raaklijn=y_max+dy_max.*(x-x_max);
+x_max = x(find(y==max(y)));
+[y_max,dy_max] = chebpolyval(c,x_max);
+raaklijn = y_max+dy_max.*(x-x_max);
 figure(3)
 plot(x,y,x,raaklijn)
 title('raaklijn aan het absolute maximum')
@@ -50,14 +50,14 @@ ylabel('Chebyshevveelterm') % y-axis label
 
 
 %plot de fout i.f.v. de iteratiestap voor startwaarde x0=-0.9, en x0=0.5
-x_0=[-0.9,0.5];
-x_nul=zeros(length(x_0),nmax);
-nulp_ben=zeros(length(x_0),nmax);
-for k=1:length(x_0)
-    x_nul(k,:)=newton_cheb(c,x_0(k), tol, nmax, 'exact', h);
-    nulp_ben(k,:)=chebpolyval(c,x_nul(k,:));
+x_0 = [-0.9,0.5];
+x_nul = zeros(length(x_0),nmax);
+nulp_ben = zeros(length(x_0),nmax);
+for k = 1:length(x_0)
+    x_nul(k,:) = newton_cheb(c,x_0(k), tol, nmax, 'exact', h);
+    nulp_ben(k,:) = chebpolyval(c,x_nul(k,:));
 end
-x_stap=[1:nmax];
+x_stap = (1:nmax);
 figure(4)
 semilogy(x_stap,abs(nulp_ben))
 title('fout i.f.v de iteratiestap')
@@ -66,12 +66,12 @@ xlabel('iteratiestap') % x-axis label
 ylabel('fout') % y-axis label
 
 %plot: fout i.f.v. de iteratiestap voor startwaarde x0=0.5 en h
-nulp_exact=nulp_ben(2,:);
-x_diff=zeros(length(h),nmax);
-nulp_diff=zeros(length(h),nmax);
-for k=1:length(h)
-    x_diff(k,:)=newton_cheb(c,0.5, tol, nmax, 'differenties', h(k));
-    nulp_diff(k,:)=chebpolyval(c,x_diff(k,:));
+nulp_exact = nulp_ben(2,:);
+x_diff = zeros(length(h),nmax);
+nulp_diff = zeros(length(h),nmax);
+for k = 1:length(h)
+    x_diff(k,:) = newton_cheb(c,0.5, tol, nmax, 'differenties', h(k));
+    nulp_diff(k,:) = chebpolyval(c,x_diff(k,:));
 end
 
 figure(5)
