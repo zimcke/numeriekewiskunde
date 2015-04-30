@@ -57,7 +57,7 @@
 %\rhead{\firstxmark} % Top right header
 \lfoot{\lastxmark} % Bottom left footer
 \cfoot{} % Bottom center footer
-\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\rfoot{Pagina\ \thepage\ van\ \protect\pageref{LastPage}} % Bottom right footer
 \renewcommand\headrulewidth{0.4pt} % Size of the header rule
 \renewcommand\footrulewidth{0.4pt} % Size of the footer rule
 
@@ -247,7 +247,7 @@ Uit de basisstap, de inductiestap en het principe van volledige inductie volgt h
 \problemAnswer{
 
 }
-\clearpage
+
 %\end{homeworkProblem}
 
 %----------------------------------------------------------------------------------------
@@ -256,28 +256,46 @@ Uit de basisstap, de inductiestap en het principe van volledige inductie volgt h
 
 \section{Deel 2: Veelterminterpolatie}
 
+
 \subsection{Equidistante punten en het Runge fenomeen}
+
 \begin{center}
-\begin{figure}
+\begin{figure}[h!]
 \includegraphics[width=0.75\columnwidth]{lagrange_interpolatie}
-\caption{De Runge functie en de betreffende Lagrange interpolaties} % Example image
+\caption{Veelterminterpolatie van de Runge functie in de Lagrange basis} % Example image
 \end{figure}
 \end{center}
 
+Figuur 1 toont dat, bij toenemende graad, de respectievelijke veelterminterpolatie \textbf{niet vanzelfsprekend een betere benadering} van de Runge functie oplevert. We zien duidelijk dat de veeltermen aan de uiteinden van het interval [-1,1] \textbf{sterkere oscillaties} vertoont. Tussen de interpolatiepunten, zal de Lagrange interpolatie een overschatting maken van de verandering in functiewaarden. Dit gedrag wordt versterkt naarmate men meer interpolatiepunten kiest. 
+\\  \\
+Om dit extreme gedrag in de buurt van de randwaarden te minimaliseren, kan men er voor opteren de \textbf{interpolatiepunten anders te verspreiden} over het interval. De Chebyshev punten vormen een horizontale projectie van punten op de goniometrische cirkel en zullen daarom dichter bij elkaar liggen in de buurt van -1 en 1.  
+\\ \\
 \begin{center}
-\begin{figure}
+\begin{figure}[h!]
 \includegraphics[width=0.75\columnwidth]{relatieve_fout}
-\caption{De relatieve fout behorende bij de betreffende veelterminterpolaties} % Example image
+\caption{De relatieve fout bij Lagrange veelterminterpolatie} % Example image
 \end{figure}
 \end{center}
+
+TODO: bespreek relatieve fout
+\\ \\ 
+Dat de veelterminterpolatie door deze Chebyshev punten in het algemeen een \textbf{minder grote interpolatiefout} heeft dan bij het gebruik van equidistante punten, is duidelijk te zien in figuur 3.
+
+\begin{center}
+\begin{figure}[h!]
+\includegraphics[width=0.75\columnwidth]{benaderingsfout_interpolatiepunten}
+\caption{Interpolatiefout E voor toenemende graden 0,1,...,50} % Example image
+\end{figure}
+\end{center}
+
 
 \subsection{Verschillende basissen}
 
 
 \begin{center}
-\begin{figure}
+\begin{figure}[h!]
 \includegraphics[width=0.75\columnwidth]{verschillende_basissen}
-\caption{De Runge functie en de betreffende Lagrange interpolaties} % Example image
+\caption{De interpolatiefout E van interpolatie volgens Lagrange, monomiaal en Chebyshev basis} % Example image
 \end{figure}
 \end{center}
 

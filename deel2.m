@@ -36,7 +36,7 @@ plot(z, lagrange8)
 plot(z, lagrange10)
 plot(z, lagrange12)
 plot(z, lagrange14)
-title('Veelterminterpolatie in de Lagrange basis');
+title('Veelterminterpolatie van de Runge functie in de Lagrange basis');
 legend('f(x)','Graad 8', 'Graad 10', 'Graad 12', 'Graad 14');
 xlabel('x-waarden in [-1,1]') % x-axis label
 ylabel('Functiewaarden interpolatie') % y-axis label
@@ -70,6 +70,15 @@ xc = chebyshev_nodes(51);
 lagrange50c = evalueer_lagrange(xc, f, z);
 abs_error50c = abs(lagrange50c - y);
 rel_error50c = abs_error50c ./ y;
+
+
+figure(6),clf
+plot(z, lagrange20)
+hold on
+plot(z, lagrange50)
+plot(z, lagrange20c)
+plot(z, lagrange50c)
+legend('n = 20 equidistant', 'n = 50 equidistant', 'n = 20 Chebyshev', ' n = 50 Chebyshev');
 
 % Figure 2: relative error with Lagrange interpolation (equidistant and
 % chebychev nodes)

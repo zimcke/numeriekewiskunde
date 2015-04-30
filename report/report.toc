@@ -2,7 +2,7 @@
 \contentsline {section}{\numberline {1}Achtergrond}{3}
 \contentsline {paragraph}{Bewijs: }{3}
 \contentsline {section}{\numberline {2}Deel 1: Drie veeltermbasissen}{4}
-\contentsline {section}{\numberline {3}Deel 2: Veelterminterpolatie}{5}
-\contentsline {subsection}{\numberline {3.1}Equidistante punten en het Runge fenomeen}{5}
+\contentsline {section}{\numberline {3}Deel 2: Veelterminterpolatie}{4}
+\contentsline {subsection}{\numberline {3.1}Equidistante punten en het Runge fenomeen}{4}
 \contentsline {subsection}{\numberline {3.2}Verschillende basissen}{5}
 \contentsline {section}{\numberline {4}Deel 3: Methode van Newton-Raphson}{7}
