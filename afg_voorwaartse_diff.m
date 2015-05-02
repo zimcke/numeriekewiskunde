@@ -4,9 +4,9 @@ for i = 0:k
     if i == 0;
         t = 0;
     else
-        t = voorwaartse_diff( c, i, x0, h);
+        t = voorwaartse_diff( c, i, x0, h)./i;
     end
-    df0 = df0 - ((-1)^i)*t/h;
+    df0 = df0 - ((-1)^i)*t./h;
     
 end
 

@@ -4,5 +4,9 @@
 \contentsline {section}{\numberline {2}Deel 1: Drie veeltermbasissen}{4}
 \contentsline {section}{\numberline {3}Deel 2: Veelterminterpolatie}{4}
 \contentsline {subsection}{\numberline {3.1}Equidistante punten en het Runge fenomeen}{4}
-\contentsline {subsection}{\numberline {3.2}Verschillende basissen}{5}
-\contentsline {section}{\numberline {4}Deel 3: Methode van Newton-Raphson}{7}
+\contentsline {subsection}{\numberline {3.2}Verschillende basissen}{4}
+\contentsline {section}{\numberline {4}Deel 3: Methode van Newton-Raphson}{5}
+\contentsline {subsection}{\numberline {4.1}benaderen van nulpunten m.b.v. de methoden van Newton-Raphson}{5}
+\contentsline {subsection}{\numberline {4.2}fout en orde van convergentie voor verschillende startwaarden}{5}
+\contentsline {subsection}{\numberline {4.3}fout en orde van convergentie met voorwaartse differenties}{6}
+\contentsline {subsection}{\numberline {4.4}extra rekenkost}{6}

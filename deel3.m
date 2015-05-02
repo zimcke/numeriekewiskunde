@@ -4,8 +4,8 @@
 format long
 load('cheb_coeffs.mat')
 nbpoints = 10000;
-tol = 10^-20;
-nmax = 50;
+tol = 10^-50;
+nmax = 100;
 h = [10^-1 10^-1.5 10^-2 10^-3 10^-6];
 x_start = linspace(-1,1,100);
 x = linspace(-1,1,nbpoints);
@@ -77,7 +77,7 @@ end
 figure(5)
 semilogy(x_stap,abs(nulp_exact),x_stap,abs(nulp_diff))
 title('fout i.f.v de iteratiestap')
-legend('exact','h=10^-1','h=10^-1.5','h=10^-2','h=10^-3','10^-6')
+legend('exact','h=10^-1','h=10^-1.5','h=10^-2','h=10^-3','h=10^-6')
 xlabel('iteratiestap') % x-axis label
 ylabel('fout') % y-axis label
     

@@ -307,6 +307,49 @@ Dat de veelterminterpolatie door deze Chebyshev punten in het algemeen een \text
 
 \section{Deel 3: Methode van Newton-Raphson}
 
+\subsection{benaderen van nulpunten m.b.v. de methoden van Newton-Raphson}
+
+\begin{center}
+\begin{figure}[h!]
+\includegraphics[width=0.75\columnwidth]{figuur_1}
+\caption{Nulpuntbenadering met de methode van Newton-Raphson} % Example image
+\end{figure}
+\end{center}
+Figuur 5 toont de veelterm die bekomen wordt door de vector c uit te zetten in de Chebyshev-basis. Daarnaast worden ook de nulpunten weergegeven die gevonden worden m.b.v. de methode van Newton-Raphson. Het is duidelijk te zien dat alle nulpunten van de veelterm gevonden worden. Maar daarnaast worden er ook nog een aantal extra nulpunten bekomen die niet meer tot de veelterm behoren.
+\\ \\
+Om te zien welke startwaarde naar welk nulpunt convergeert, worden op onderstaande figuur de residu’s i.f.v. de startwaarden geplot. De residu is de functie-waarde die bekomen wordt in de uiteindelijke benadering.
+\\ \\
+\begin{center}
+\begin{figure}[h!]
+\includegraphics[width=0.75\columnwidth]{figuur_2}
+\caption{residu’s i.f.v. de startwaarden} % Example image
+\end{figure}
+\end{center}
+Het is makkelijk in te zien dat er niet voor elk punt convergentie zal zijn. De methode van Newton-Rapshon bepaalt immers een rij van punten waarvoor geldt: $x_{n+1}=x_{n}-\dfrac{f(x_{n})}{f’(x_{n})}$. Als ergens in deze rij $f’(x_{n})=0$ dan zal $x_{n+1}$ niet bestaan en is er dus geen convergentie. Een andere manier om de formule van Newton-Raphson te interpreteren is door $x_{n+1}$ te zien als het snijpunt van de x-as met de rechte door het punt $(x_{n},f(x_{n})$ in de richting van $f’(x_{n})$. Als $f’(x_{n})=0$ dan is deze rechte evenwijdig met de x-as, en er zal dus nooit een snijpunt zijn en dus ook geen convergentie.
+\\ \\
+\subsection{fout en orde van convergentie voor verschillende startwaarden}
+\begin{center}
+\begin{figure}[h!]
+\includegraphics[width=0.75\columnwidth]{figuur_3}
+\caption{fout i.f.v de iteratiesstap} % Example image
+\end{figure}
+\end{center}
+Op figuur 7 is de fout in functie van de iteratiestap geplot voor de startwaarden $x_{0}=-0.9$ en $x_{0}=0.5$. Het is duidelijk merkbaar dat er voor de startwaarde 0.5 een veel snellere convergentie is. Met behulp van de formule $\rho_{p}=\lim_{n \rightarrow \inf } \dfrac{x_{n+1}-x{*}}{x_{n}-x{*}}$ kan de convergentie-orde bepaalt worden. Als $\rho_{p} $ een reëel getal is dan is n de orde van convergentie. Omdat er in de methode van Newton-Raphson maar een eindig aantal iteraties gebeurd, kan de limiet van n naar oneindig niet genomen worden maar moet het aantal iteraties in rekening gebracht worden. Het aantal iteraties hangt af van de nmax,het maximaal aantal iteraties, en de gekozen tolerantie, dit is het minimale verschil tussen twee opeenvolgende iteratiepunten. \\
+Door toepassing van deze formule wordt voor de startwaarde -0.9 een convergentie-orde van 1 gevonden, deze convergeert dus lineair. Voor de startwaarde 0.5 is de convergentie-orde 2 en dus is er kwadratische convergentie.
+\subsection{fout en orde van convergentie met voorwaartse differenties}
+\begin{center}
+\begin{figure}[h!]
+\includegraphics[width=0.75\columnwidth]{figuur_4}
+\caption{fout i.f.v de iteratiesstap} % Example image
+\end{figure}
+\end{center}
+Vanaf nu wordt gebruikt gemaakt van de methode van Newton-Raphson waarbij de afgeleide berekend wordt m.b.v. voorwaartse differenties. Op Figuur 8 wordt de fout geplot voor startwaarde $x_{0}=0.5$ met verschillende waarden voor de parameter h. Op de figuur is duidelijk dat er geen convergentie is  voor $h=10^{-1}$. Daarnaast lijkt het ook alsof er geen convergentie is voor $h=10^{-1.5}$ maar als de nmax verhoogt wordt tot 1000 dan is er toch convergentie merkbaar, de convergentie-orde is wel zeer klein, ongeveer 0.05.  Voor de andere waarden is er wel duidelijk convergentie dus kan de orde bepaald worden. Dit kan opnieuw met behulp van de formule die in de vorige paragraaf gegeven werd. Voor $h=10^{-2}$ is er lineaire convergentie. Voor $h=10^{-3}$ en $h=10^{-6}$ is er kwadratische convergentie
+\subsection{extra rekenkost}
+Stel dat de methode van Newton-Rapshon wordt toegepast, maar i.p.v. de afgeleide te berekenen m.b.v. voorwaartse differenties, worden nu centrale differenties gebruikt dan is er geen extra rekenkost. Om een centrale differentie van orde n uit te rekenen moeten n+1 functie-evaluaties uitgevoerd worden, dit is exact evenveel als bij een voorwaartse differentie. Het kan natuurlijk ook nog zijn dat een van de twee minder nauwkeurig is, en dat er dus meer differenties moeten gezocht worden om een afgeleide met een zelfde nauwkeurigheid te benaderen. Maar na evalueren van de formules van Gauss en Stirling, blijkt dat beide ongeveer even nauwkeurig zijn.
+
+
+
+
 \clearpage
 
 %----------------------------------------------------------------------------------------
