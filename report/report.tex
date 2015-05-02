@@ -232,7 +232,7 @@ Uit de basisstap, de inductiestap en het principe van volledige inductie volgt h
 \end{proof}
 }
 
-\clearpage
+
 %Listing \ref{homework_example} shows a Perl script.
 %\perlscript{homework_example}{Sample Perl Script With Highlighting}
 %\end{homeworkProblem}
@@ -244,10 +244,16 @@ Uit de basisstap, de inductiestap en het principe van volledige inductie volgt h
 %\begin{homeworkProblem}
 
 \section{Deel 1: Drie veeltermbasissen}
-\problemAnswer{
+%\problemAnswer{
+%}
 
-}
-
+\begin{center}
+\begin{figure}[h!]
+\includegraphics[width=0.60\columnwidth]{chebyshev_veeltermen}
+\caption{Chebyshev veeltermen tot en met graad 5} % Example image
+\end{figure}
+\end{center}
+\clearpage
 %\end{homeworkProblem}
 
 %----------------------------------------------------------------------------------------
@@ -261,7 +267,7 @@ Uit de basisstap, de inductiestap en het principe van volledige inductie volgt h
 
 \begin{center}
 \begin{figure}[h!]
-\includegraphics[width=0.75\columnwidth]{lagrange_interpolatie}
+\includegraphics[width=0.60\columnwidth]{lagrange_interpolatie}
 \caption{Veelterminterpolatie van de Runge functie in de Lagrange basis} % Example image
 \end{figure}
 \end{center}
@@ -272,7 +278,7 @@ Om dit extreme gedrag in de buurt van de randwaarden te minimaliseren, kan men e
 \\ \\
 \begin{center}
 \begin{figure}[h!]
-\includegraphics[width=0.75\columnwidth]{relatieve_fout}
+\includegraphics[width=0.60\columnwidth]{relatieve_fout}
 \caption{De relatieve fout bij Lagrange veelterminterpolatie} % Example image
 \end{figure}
 \end{center}
@@ -283,7 +289,7 @@ Dat de veelterminterpolatie door deze Chebyshev punten in het algemeen een \text
 
 \begin{center}
 \begin{figure}[h!]
-\includegraphics[width=0.75\columnwidth]{benaderingsfout_interpolatiepunten}
+\includegraphics[width=0.60\columnwidth]{benaderingsfout_interpolatiepunten}
 \caption{Interpolatiefout E voor toenemende graden 0,1,...,50} % Example image
 \end{figure}
 \end{center}
@@ -294,11 +300,20 @@ Dat de veelterminterpolatie door deze Chebyshev punten in het algemeen een \text
 
 \begin{center}
 \begin{figure}[h!]
-\includegraphics[width=0.75\columnwidth]{verschillende_basissen}
+\includegraphics[width=0.\columnwidth]{verschillende_basissen}
 \caption{De interpolatiefout E van interpolatie volgens Lagrange, monomiaal en Chebyshev basis} % Example image
 \end{figure}
 \end{center}
 
+\problemAnswer{
+Graad 50 \\
+Gemiddelde rekentijd Chebyshev = 0.3412 \\
+Gemiddelde rekentijd Lagrange = 0.4229 \\
+\\
+Graad 100\\
+Gemiddelde rekentijd Chebyshev = 0.6774 \\
+Gemiddelde rekentijd Lagrange = 1.6394 \\
+}
 \clearpage
 
 %----------------------------------------------------------------------------------------

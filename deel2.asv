@@ -188,27 +188,26 @@ print('report\verschillende_basissen','-depsc');
 z = linspace(-1,1,10000);
 i = 50;
 chebyshev_nodes50 = chebyshev_nodes(i+1);
-nbExperiments = 20;
 
 % Chebyshev n = 50
 gemiddelde_chebyshev = 0;
 tic
-for j = 1:nbExperiments
+for j = 1:20
     b = f(chebyshev_nodes50)';
     [T, ~] = chebyshev(chebyshev_nodes50, i);
     coeff_chebyshev = T\b;
     chebpolyval(coeff_chebyshev, z);
 end
-gemiddelde_chebyshev = toc/nbExperiments
+gemiddelde_chebyshev = toc/10
 
 
 % Lagrange n = 50
 gemiddelde_lagrange = 0;
 tic
-for j = 1:nbExperiments
+for j = 1:20
     evalueer_lagrange(chebyshev_nodes50,f,z);
 end
-gemiddelde_lagrange = toc/nbExperiments
+gemiddelde_lagrange = toc/10
 
 
 i = 100;
@@ -216,20 +215,20 @@ chebyshev_nodes100 = chebyshev_nodes(i+1);
 
 % Chebyshev n = 100
 tic
-for j = 1:nbExperiments
+for j = 1:20
     b = f(chebyshev_nodes100)';
     [T, ~] = chebyshev(chebyshev_nodes100, i);
     coeff_chebyshev = T\b;
     chebpolyval(coeff_chebyshev, z);
 end
-gemiddelde_chebyshev = toc/nbExperiments
+gemiddelde_chebyshev = toc/10
 
 % Lagrange n = 100
 tic
-for j = 1:nbExperiments
+for j = 1:10
     evalueer_lagrange(chebyshev_nodes100,f,z);
 end
-gemiddelde_lagrange = toc/nbExperiments
+gemiddelde_lagrange = toc/10
 
 
 

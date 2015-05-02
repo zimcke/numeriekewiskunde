@@ -22,5 +22,6 @@ title('Chebyshev veeltermen t.e.m. graad 5 in [-1,1]')
 legend('graad 0','graad 1', 'graad 2', 'graad 3', 'graad 4', 'graad 5')
 xlabel('x-waarden in [-1,1]') % x-axis label
 ylabel('Functiewaarden Chebyshev veeltermen') % y-axis label
+print('report\chebyshev_veeltermen','-depsc');
 
 [y, dy] = chebpolyval(c,x);
