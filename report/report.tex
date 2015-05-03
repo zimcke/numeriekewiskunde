@@ -35,6 +35,7 @@
 \usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
 \usepackage[dutch]{babel}
 \usepackage{amsmath,amssymb}
+\usepackage{float}
 
 \newtheorem{stelling}{Stelling}
 \newenvironment{proof}{\paragraph{Bewijs: }}{\hfill$\square$}
@@ -52,13 +53,13 @@
 
 % Set up the header and footer
 \pagestyle{fancy}
-\lhead{\hmwkAuthorName, \hmwkAuthorNameS} % Top left header
-\rhead{ \hmwkClassInstructor\ \hmwkClassTime \hmwkTitle} % Top center head
-%\rhead{\firstxmark} % Top right header
-\lfoot{\lastxmark} % Bottom left footer
+\lhead{ } % Top left header
+\chead{ } % Top center head
+\rhead{ } % Top right header
+\lfoot{\hmwkAuthorName, \hmwkAuthorNameS} % Bottom left footer
 \cfoot{} % Bottom center footer
 \rfoot{Pagina\ \thepage\ van\ \protect\pageref{LastPage}} % Bottom right footer
-\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\headrulewidth{0.0pt} % Size of the header rule
 \renewcommand\footrulewidth{0.4pt} % Size of the footer rule
 
 \setlength\parindent{0pt} % Removes all indentation from paragraphs
@@ -215,24 +216,24 @@ T_{k}(x)=\cos(k\arccos(x)) \label{formule1}
 
 \problemAnswer{
 \begin{proof}
-We zullen deze stelling aantonen met behulp van volledige inductie.\\
-
-\begin{bfseries} Basisstap:\end{bfseries}\\
+We zullen deze stelling aantonen met behulp van volledige inductie.\\ \\
+\vspace{0.1in}
+\begin{bfseries}Basisstap:\end{bfseries}\\
 voor $k=0$ geldt: $T_{0}=\cos(0*\arccos(x))=\cos(0)=1$\\
 voor $k=1$ geldt: $T_{1}=\cos(\arccos(x))=x$ op het interval $[-1,1]$ want de $\arccos$-functie is enkel 	gedefinieerd op het interval $[-1,1]$.\\ \\
 \vspace{0.1in}
-\begin{bfseries} Inductiestap:\end{bfseries}\\
+\begin{bfseries}Inductiestap:\end{bfseries}\\
 We nemen aan dat voor alle $j\leq n$ geldt: $T_{n}(x)=\cos(n\arccos(x))$. Nu moet aangetoond worden dat dit ook 	geldt voor $n+1$. Volgens de recursiebetrekking voor de Chebyshev veeltermen geldt: $T_{n+1}(x)=2xT_{n}(x)-T_{n-1}(x)$. Nu kunnen we de inductiehypothese toepassen, dit geeft: $T_{n+1}(x)=2x\cos(n\arccos(x))-\cos((n-1)\arccos(x))$. Met behulp van de som-en verschilformules voor de cosinus kunnen we dit schrijven als: $T_{n+1}=2x\cos(n\arccos(x))-\cos(n\arccos(x))\cos(\arccos(x))-\sin(n\arccos(x))\sin(\arccos(x))\\
 =\cos(n\arccos(x)\cos(\arccos(x))-\sin(n\arccos(x))\sin(\arccos(x))$
 Hierop kunnen we dan opnieuw de som-en verschil formules voor de cosinus op toepassen en dit geeft:
 $T_{n+1}(x)=\cos((n+1)\arccos(x))$. De veronderstelling geldt dus ook voor n+1.\\ \\
 \vspace{0.1in}
-\begin{bfseries} Conclusie:\end{bfseries}\\
+\begin{bfseries}Conclusie:\end{bfseries}\\
 Uit de basisstap, de inductiestap en het principe van volledige inductie volgt het te bewijzen.
 \end{proof}
 }
 
-\clearpage
+\clearpage 
 %Listing \ref{homework_example} shows a Perl script.
 %\perlscript{homework_example}{Sample Perl Script With Highlighting}
 %\end{homeworkProblem}
@@ -243,10 +244,14 @@ Uit de basisstap, de inductiestap en het principe van volledige inductie volgt h
 
 %\begin{homeworkProblem}
 
-\section{Deel 1: Drie veeltermbasissen}
-\problemAnswer{
+\section{Deel 1: Drie veeltermbasissen} 
 
-}
+ \\  \ \\
+\begin{figure}[H]
+\includegraphics[width=0.50\columnwidth]{chebyshev_veeltermen}
+\caption{Chebyshev veeltermen tot en met graad 5} % Example image
+\end{figure}
+
 
 %\end{homeworkProblem}
 
@@ -258,48 +263,61 @@ Uit de basisstap, de inductiestap en het principe van volledige inductie volgt h
 
 
 \subsection{Equidistante punten en het Runge fenomeen}
+ \\  \ \\
 
-\begin{center}
-\begin{figure}[h!]
-\includegraphics[width=0.75\columnwidth]{lagrange_interpolatie}
+\begin{figure}[H]
+\includegraphics[width=0.60\columnwidth]{lagrange_interpolatie}
 \caption{Veelterminterpolatie van de Runge functie in de Lagrange basis} % Example image
 \end{figure}
-\end{center}
 
-Figuur 1 toont dat, bij toenemende graad, de respectievelijke veelterminterpolatie \textbf{niet vanzelfsprekend een betere benadering} van de Runge functie oplevert. We zien duidelijk dat de veeltermen aan de uiteinden van het interval [-1,1] \textbf{sterkere oscillaties} vertoont. Tussen de interpolatiepunten, zal de Lagrange interpolatie een overschatting maken van de verandering in functiewaarden. Dit gedrag wordt versterkt naarmate men meer interpolatiepunten kiest. 
+
+Figuur 2 toont dat, bij toenemende graad, de respectievelijke veelterminterpolatie \textbf{niet vanzelfsprekend een betere benadering} van de Runge functie oplevert. We zien duidelijk dat de veeltermen aan de uiteinden van het interval [-1,1] \textbf{sterkere oscillaties} vertoont. Tussen de interpolatiepunten, zal de Lagrange interpolatie een overschatting maken van de verandering in functiewaarden. Dit gedrag wordt versterkt naarmate men meer interpolatiepunten kiest. 
 \\  \\
 Om dit extreme gedrag in de buurt van de randwaarden te minimaliseren, kan men er voor opteren de \textbf{interpolatiepunten anders te verspreiden} over het interval. De Chebyshev punten vormen een horizontale projectie van punten op de goniometrische cirkel en zullen daarom dichter bij elkaar liggen in de buurt van -1 en 1.  
 \\ \\
-\begin{center}
-\begin{figure}[h!]
+
+\begin{figure}[H]
 \includegraphics[width=0.75\columnwidth]{relatieve_fout}
 \caption{De relatieve fout bij Lagrange veelterminterpolatie} % Example image
 \end{figure}
-\end{center}
 
-TODO: bespreek relatieve fout
+
+Figuur 3 bewijst opnieuw het Runge fenomeen, in die zin dat de \textbf{veeltermbenadering voor equidistante punten minder nauwkeurig} is in de buurt van -1 en 1. De relatieve fout is daar immers het grootst (en beduidend groter dan bij de Chebyshev punten). Hoewel de relatieve fout voor equidistante punten zeer optimaal is rond x = 0, kiest men beter voor een veelterminterpolatie door Chebyshev punten. Daarmee verkrijgt men namelijk een relatieve fout die slechts weinig schommelt over het hele interpolatieinterval. 
 \\ \\ 
-Dat de veelterminterpolatie door deze Chebyshev punten in het algemeen een \textbf{minder grote interpolatiefout} heeft dan bij het gebruik van equidistante punten, is duidelijk te zien in figuur 3.
+Dat de veelterminterpolatie door deze Chebyshev punten in het algemeen een \textbf{minder grote interpolatiefout} heeft dan bij het gebruik van equidistante punten, is duidelijk te zien in figuur 4. Bij het gebruik van Chebyshev punten zal de interpolatiefout (afhankelijk van de machinenauwkeurigheid) dalen bij toenemende graad. Als men equidistante punten hanteert, dan wordt de fout bij equidistante punten onomkeerbaar groot wanneer de graad stijgt.
 
-\begin{center}
-\begin{figure}[h!]
-\includegraphics[width=0.75\columnwidth]{benaderingsfout_interpolatiepunten}
-\caption{Interpolatiefout E voor toenemende graden 0,1,...,50} % Example image
+
+\begin{figure}[H]
+\includegraphics[width=0.60\columnwidth]{benaderingsfout_interpolatiepunten}
+\caption{Interpolatiefout E voor toenemende graden 0 ,1 , ..., 50} % Example image
 \end{figure}
-\end{center}
+
 
 
 \subsection{Verschillende basissen}
+\\ \ \\
 
 
-\begin{center}
-\begin{figure}[h!]
-\includegraphics[width=0.75\columnwidth]{verschillende_basissen}
+\begin{figure}[H]
+\includegraphics[width=0.60\columnwidth]{verschillende_basissen}
 \caption{De interpolatiefout E van interpolatie volgens Lagrange, monomiaal en Chebyshev basis} % Example image
 \end{figure}
-\end{center}
 
-\clearpage
+
+Uit bovenstaande figuur kunnen we afleiden dat zowel de \textbf{Langrange basis} als de \textbf{Chebyshev basis} een relatief gunstige interpolatiefout veroorzaken. De \textbf{grootte van de benaderingsfout daalt}, naarmate de graad stijgt (m.a.w. de benadering wordt nauwkeuriger). Bij de mononiaalbasis neemt de interpolatiefout echter toe, bij stijgende graad. \\ \\
+
+\problemAnswer{
+Graad 50 \\
+Gemiddelde rekentijd Chebyshev = 0.3412 \\
+Gemiddelde rekentijd Lagrange = 0.4229 \\
+\\
+Graad 100\\
+Gemiddelde rekentijd Chebyshev = 0.6774 \\
+Gemiddelde rekentijd Lagrange = 1.6394 \\
+}
+
+We mogen eenvoudigweg besluiten dat de \textbf{Chebyshev basis een snellere methode is om een interpolerende veelterm te bepalen}. Bij verdubbeling van de graad, vindt er bij Chebyshev een verdubbeling van de uitvoeringstijd plaats, voor de Langrange basis gaat het om een verviervoudiging van de uitvoeringstijd.
+
 
 %----------------------------------------------------------------------------------------
 %	PART 3
@@ -307,45 +325,50 @@ Dat de veelterminterpolatie door deze Chebyshev punten in het algemeen een \text
 
 \section{Deel 3: Methode van Newton-Raphson}
 
-\subsection{benaderen van nulpunten m.b.v. de methoden van Newton-Raphson}
+\subsection{Benaderen van nulpunten met de methode van Newton-Raphson}
+\ \\
 
-\begin{center}
-\begin{figure}[h!]
-\includegraphics[width=0.75\columnwidth]{figuur_1}
+\begin{figure}[H]
+\includegraphics[width=0.60\columnwidth]{figuur_1}
 \caption{Nulpuntbenadering met de methode van Newton-Raphson} % Example image
 \end{figure}
-\end{center}
-Figuur 5 toont de veelterm die bekomen wordt door de vector c uit te zetten in de Chebyshev-basis. Daarnaast worden ook de nulpunten weergegeven die gevonden worden m.b.v. de methode van Newton-Raphson. Het is duidelijk te zien dat alle nulpunten van de veelterm gevonden worden. Maar daarnaast worden er ook nog een aantal extra nulpunten bekomen die niet meer tot de veelterm behoren.
+
+Figuur 6 toont de veelterm die bekomen wordt door de vector c uit te zetten in de \textbf{Chebyshev basis}. Daarnaast worden ook de \textbf{nulpunten} weergegeven die gevonden worden m.b.v. de methode van Newton-Raphson. Het is duidelijk te zien dat alle nulpunten van de veelterm gevonden worden. Daarnaast worden er echter nog een aantal extra nulpunten berrekend die niet meer tot de veelterm behoren.
 \\ \\
-Om te zien welke startwaarde naar welk nulpunt convergeert, worden op onderstaande figuur de residu’s i.f.v. de startwaarden geplot. De residu is de functie-waarde die bekomen wordt in de uiteindelijke benadering.
+Om te zien welke startwaarde naar welk nulpunt convergeert, worden op onderstaande figuur de \textbf{residu\'\ s in functie van de startwaarden} geplot. De residu is de functiewaarde die bekomen wordt in de uiteindelijke benadering.
 \\ \\
-\begin{center}
-\begin{figure}[h!]
+
+\begin{figure}[H]
 \includegraphics[width=0.75\columnwidth]{figuur_2}
-\caption{residu’s i.f.v. de startwaarden} % Example image
+\caption{Het residu in functie van de startwaarden $x_0$ = 0.9 en $x_0$ = 0.5} % Example image
 \end{figure}
-\end{center}
-Het is makkelijk in te zien dat er niet voor elk punt convergentie zal zijn. De methode van Newton-Rapshon bepaalt immers een rij van punten waarvoor geldt: $x_{n+1}=x_{n}-\dfrac{f(x_{n})}{f’(x_{n})}$. Als ergens in deze rij $f’(x_{n})=0$ dan zal $x_{n+1}$ niet bestaan en is er dus geen convergentie. Een andere manier om de formule van Newton-Raphson te interpreteren is door $x_{n+1}$ te zien als het snijpunt van de x-as met de rechte door het punt $(x_{n},f(x_{n})$ in de richting van $f’(x_{n})$. Als $f’(x_{n})=0$ dan is deze rechte evenwijdig met de x-as, en er zal dus nooit een snijpunt zijn en dus ook geen convergentie.
-\\ \\
-\subsection{fout en orde van convergentie voor verschillende startwaarden}
-\begin{center}
-\begin{figure}[h!]
+
+Het is makkelijk in te zien dat er \textbf{niet voor elk punt convergentie} zal zijn. De methode van Newton-Rapshon bepaalt immers een rij van punten waarvoor geldt: $x_{n+1}=x_{n}-\dfrac{f(x_{n})}{f’(x_{n})}$. Als ergens in deze rij $f’(x_{n})=0$ dan zal $x_{n+1}$ niet bestaan en is er dus geen convergentie. Een andere manier om de formule van Newton-Raphson te interpreteren is door $x_{n+1}$ te zien als het snijpunt van de x-as met de rechte door het punt $(x_{n},f(x_{n})$ in de richting van $f’(x_{n})$. Als $f’(x_{n})=0$ dan is deze rechte evenwijdig met de x-as, en er zal dus nooit een snijpunt zijn en dus ook geen convergentie.
+
+\clearpage
+\subsection{Fout en orde van convergentie voor verschillende startwaarden}
+\ \\
+\begin{figure}[H]
 \includegraphics[width=0.75\columnwidth]{figuur_3}
-\caption{fout i.f.v de iteratiesstap} % Example image
+\caption{Fout in functie van de iteratiesstap} % Example image
 \end{figure}
-\end{center}
+
 Op figuur 7 is de fout in functie van de iteratiestap geplot voor de startwaarden $x_{0}=-0.9$ en $x_{0}=0.5$. Het is duidelijk merkbaar dat er voor de startwaarde 0.5 een veel snellere convergentie is. Met behulp van de formule $\rho_{p}=\lim_{n \rightarrow \inf } \dfrac{x_{n+1}-x{*}}{x_{n}-x{*}}$ kan de convergentie-orde bepaalt worden. Als $\rho_{p} $ een reëel getal is dan is n de orde van convergentie. Omdat er in de methode van Newton-Raphson maar een eindig aantal iteraties gebeurd, kan de limiet van n naar oneindig niet genomen worden maar moet het aantal iteraties in rekening gebracht worden. Het aantal iteraties hangt af van de nmax,het maximaal aantal iteraties, en de gekozen tolerantie, dit is het minimale verschil tussen twee opeenvolgende iteratiepunten. \\
 Door toepassing van deze formule wordt voor de startwaarde -0.9 een convergentie-orde van 1 gevonden, deze convergeert dus lineair. Voor de startwaarde 0.5 is de convergentie-orde 2 en dus is er kwadratische convergentie.
-\subsection{fout en orde van convergentie met voorwaartse differenties}
-\begin{center}
-\begin{figure}[h!]
+
+\clearpage
+\subsection{Fout en orde van convergentie met voorwaartse differenties}
+\ \\
+\begin{figure}[H]
 \includegraphics[width=0.75\columnwidth]{figuur_4}
-\caption{fout i.f.v de iteratiesstap} % Example image
+\caption{Fout in functie van de iteratiesstap} % Example image
 \end{figure}
-\end{center}
-Vanaf nu wordt gebruikt gemaakt van de methode van Newton-Raphson waarbij de afgeleide berekend wordt m.b.v. voorwaartse differenties. Op Figuur 8 wordt de fout geplot voor startwaarde $x_{0}=0.5$ met verschillende waarden voor de parameter h. Op de figuur is duidelijk dat er geen convergentie is  voor $h=10^{-1}$. Daarnaast lijkt het ook alsof er geen convergentie is voor $h=10^{-1.5}$ maar als de nmax verhoogt wordt tot 1000 dan is er toch convergentie merkbaar, de convergentie-orde is wel zeer klein, ongeveer 0.05.  Voor de andere waarden is er wel duidelijk convergentie dus kan de orde bepaald worden. Dit kan opnieuw met behulp van de formule die in de vorige paragraaf gegeven werd. Voor $h=10^{-2}$ is er lineaire convergentie. Voor $h=10^{-3}$ en $h=10^{-6}$ is er kwadratische convergentie
-\subsection{extra rekenkost}
-Stel dat de methode van Newton-Rapshon wordt toegepast, maar i.p.v. de afgeleide te berekenen m.b.v. voorwaartse differenties, worden nu centrale differenties gebruikt dan is er geen extra rekenkost. Om een centrale differentie van orde n uit te rekenen moeten n+1 functie-evaluaties uitgevoerd worden, dit is exact evenveel als bij een voorwaartse differentie. Het kan natuurlijk ook nog zijn dat een van de twee minder nauwkeurig is, en dat er dus meer differenties moeten gezocht worden om een afgeleide met een zelfde nauwkeurigheid te benaderen. Maar na evalueren van de formules van Gauss en Stirling, blijkt dat beide ongeveer even nauwkeurig zijn.
+
+Vanaf nu wordt gebruikt gemaakt van de methode van Newton-Raphson waarbij de afgeleide berekend wordt m.b.v. voorwaartse differenties. Op Figuur 8 wordt de fout geplot voor startwaarde $x_{0}=0.5$ met verschillende waarden voor de parameter h. Op de figuur is duidelijk dat er \textbf{geen convergentie} is voor $h=10^{-1}$. Daarnaast lijkt het ook alsof er geen convergentie is voor $h=10^{-1.5}$ maar als de nmax verhoogt wordt tot 1000 dan is er toch convergentie merkbaar, de \textbf{convergentie-orde is wel zeer klein, ongeveer 0.05}.  Voor de andere waarden is er wel duidelijk convergentie dus kan de orde bepaald worden. Dit kan opnieuw met behulp van de formule die in de vorige paragraaf gegeven werd. Voor $h=10^{-2}$ is er \textbf{lineaire convergentie}. Voor $h=10^{-3}$ en $h=10^{-6}$ is er \textbf{kwadratische convergentie}.
+
+\subsection{Extra rekenkost}
+Stel dat de methode van Newton-Rapshon wordt toegepast, maar in plaats van de afgeleide te berekenen met behulp van voorwaartse differenties, worden nu centrale differenties gebruikt, dan is er \textbf{geen extra rekenkost}. Om een centrale differentie van orde n uit te rekenen moeten n+1 functie-evaluaties uitgevoerd worden. Dit is precies even veel als bij een voorwaartse differentie. \\
+Het kan natuurlijk ook nog zijn dat een van de twee minder nauwkeurig is, en dat er dus meer differenties moeten gezocht worden om een afgeleide met een zelfde nauwkeurigheid te benaderen. Maar na evalueren van de formules van Gauss en Stirling, blijkt dat beide ongeveer even nauwkeurig zijn.
 
 
 
